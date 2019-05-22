@@ -1,0 +1,19 @@
+Decimal: Numeric extend { value |
+
+	asInteger: [ "int(value)" execute ]
+
+	round: [
+		intValue: this asInteger
+		result: (this - intValue) < 0.5 ? ifTrue: intValue else: intValue + 1
+		result asDecimal
+	]
+
+	roundUp: [
+		intValue: this asInteger
+		result: (this - intValue) > 0 ? ifTrue: intValue + 1 else: intValue
+		result asDecimal
+	]
+
+	roundDown: [ this asInteger asDecimal ]
+
+}

@@ -1,0 +1,21 @@
+Object: Class new { class |
+
+	get class
+
+	new: [ this class defaultConstructor messageType = (MessageType UNARY) ? \
+		ifTrue: [ "new QuarkObject(class)" execute ] \
+		else: UnsupportedError throw ]
+
+	= [ o | o isNull ? ifTrue: false else: [ this class = o class and ( this hashCode = o hashCode ) ] ]
+
+	hashCode: [ "this.hashCode()" execute ]
+
+	asString: [ this hashCode asString ]
+
+	isNull: [ false ]
+
+	else: [ block | this ]
+
+	elseIf: [ condition | this ]
+
+}

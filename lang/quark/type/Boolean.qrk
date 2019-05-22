@@ -1,0 +1,21 @@
+Boolean: Class new { value |
+
+	asString: [ "str(value)" execute ]
+
+	and: [ condition | "value and condition" execute ]
+
+	or: [ condition | "value or condition" execute ]
+
+	not: [ "not value" execute ]
+
+	?: [ ifTrue else |
+		result: "if value == True:\nreturn ifTrue\nelse:\nreturn else" execute
+		result: "if result != None and result.class == 'Block':\nreturn block.execute()\nelse: return result" execute
+		result
+	]
+
+	?: [ ifTrue | this ? ifTrue: ifTrue else: null ]
+
+	=: [ o | o instanceOf Boolean and (o value = this value) ]
+
+}

@@ -1,0 +1,62 @@
+AbstractList: AbstractClass new implements: List with: {
+
+	add: [ x | this at index: this size x: x; this ]
+
+	addAll: [ collection | collection forEach [ x | this add x ]; this ]
+
+	at: [ index | MustOverrideError throw ]
+
+	at: [ index x | MustOverrideError throw ]
+
+	remove: [ index | MustOverrideError throw ]
+
+	size: [ MustOverrideError throw ]
+
+	isEmpty: [ size = 0 ]
+
+	sorted: [ this sorted [ a b | a < b ? -1 elseIf (a = b) ? 0 else 1 ] ]
+
+	sorted: [ comparisonBlock |
+		this sorted comparisonBlock: comparisonBlock start: 0 end: this size
+	]
+
+	private sorted: [ comparisonBlock start end |
+		length: end - start
+		result: Array new length
+		length = 1 ? [ result add (this at start) ] \
+			elseif (length > 1) [
+				middleIndex: length / 2 + start + 1
+				left: this sorted comparisonBlock: comparisonBlock start: start end: middleIndex
+				right: this sorted comparisonBlock: comparisonBlock start: middleIndex end: end
+
+				hasLeft: [ leftIndex < left size ]
+				hasRight: [ rightIndex < right size ]
+				takeFromLeft: [ result add (left at leftIndex); leftIndex ++ ]
+				takeFromRight: [ result add (right at rightIndex); rightIndex ++ ]
+
+				leftIndex: start; rightIndex: middleIndex
+				[ hasLeft execute and hasRight execute ] whileTrue [
+					comparison: comparisonBlock execute (left at leftIndex) (right at rightIndex)
+					comparison <= 0 ? takeFromLeft else takeFromRight
+				]
+				hasLeft whileTrue takeFromLeft
+				hasRight whileTrue takeFromRight
+			]
+		result
+	]
+
+	sort!: []
+	sort!: [ comparisonBlock | ]
+	sublist: [ start end | ]
+	find: [ x | ]
+	reverseFind: [ x | ]
+	iterator: []
+	forEach: [ block | ]
+	map: [ mapBlock | ]
+	map!: [ mapBlock | ]
+	reduce: [ aggregationBlock | ]
+	filter: [ conditionBlock | ]
+	filter!: [ conditionBlock | ]
+	group: [ byBlock | ]
+
+}

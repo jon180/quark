@@ -1,0 +1,10 @@
+Map: Collection extend {
+
+	put: [ key value | ]
+	at: [ key | ]
+	remove: [ key | ]
+	contains: [ key | ]
+	keys: []
+	values: []
+
+}

@@ -1,0 +1,31 @@
+Color: Class new {
+
+	static final get MIN_VALUE: 0
+	static final get MAX_VALUE: 255
+
+	get red
+	get green
+	get blue
+	get alpha
+
+	new: [ components |
+		components instanceOf List ? [
+			it: components iterator
+			this new r: it next g: it next b: it next a: (it hasNext ? (it next) else MAX_VALUE)
+		] else [ ParameterError throw ]
+	]
+
+	new: [ r g b | this new r: r g: g b: b a: MAX_VALUE ]
+
+	new: [ r g b a | red: this validate r; green: this validate g; blue: this validate b; alpha: this validate a ]
+
+	components: [ {red, green, blue, alpha} ]
+
+	greyscale: [
+		avgValue: this components avg
+		Color new r: avgValue g: avgValue b: avgValue a: avgValue
+	]
+
+	private validate: [ value | value < MIN_VALUE or (value > MAX_VALUE) ? [ ParameterError throw ] else value ]
+
+}

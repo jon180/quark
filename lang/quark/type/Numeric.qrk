@@ -1,0 +1,21 @@
+Numeric: Class newAbstract {
+
+	get value
+
+	asString: [ "string(value)" execute ]
+
+	+: [ other | this apply operation: $+ other: other ]
+
+	-: [ other | this apply operation: $- other: other ]
+
+	*: [ other | this apply operation: $* other: other ]
+
+	/: [ other | this apply operation: $/ other: other ]
+
+	**: [ other | this apply operation: "**" other: other ]
+
+	private apply [ operation other | other instanceOf Numeric ? \
+		ifTrue: [ ("self.value " + operation + " other.value") execute ] \
+		else: NumberFormatError throw ]
+
+}

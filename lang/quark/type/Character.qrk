@@ -1,0 +1,7 @@
+Character: Class new { value |
+
+	asString: [ String new {value} ]
+
+	ascii: [ "ord(value)" execute ]
+
+}

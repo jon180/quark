@@ -1,0 +1,13 @@
+Collection: Iterable extend {
+
+	size: []
+	isEmpty: []
+	forEach: [ block | ]
+	map: [ mapBlock | ]
+	map!: [ mapBlock | ]
+	reduce: [ aggregationBlock | ]
+	filter: [ conditionBlock | ]
+	filter!: [ conditionBlock | ]
+	group: [ byBlock | ]
+
+}

@@ -1,0 +1,36 @@
+Integer: Numeric extend { value |
+
+	%: [ other | this apply operation: $% other: other ]
+
+	++: [ this apply operation: $+ other: 1 ]
+
+	asDecimal: [ "float(value)" execute ]
+
+	times: [ do: |
+		result: null; x: 0
+		[ x < this ] whileTrue [ result: do; x ++ ]
+		result
+	]
+
+	to: [ other | this range to: other step: 1 ]
+
+	range: [ to step |
+		result: RegrowableArray new; x: this
+		[ x < to ] whileTrue [
+			result add x
+			x: x + step
+		]
+		result
+	]
+
+	range: [ to do | this to to forEach do ]
+
+	factorial: [
+		product: 1
+		this range from: 1 to: value do: [ x |
+			product: product * x
+		]
+		product
+	]
+
+}

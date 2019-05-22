@@ -1,0 +1,16 @@
+List: Collection extend {
+
+	add: [ x | ]
+	addAll: [ collection | ]
+	at: [ index | ]
+	at: [ index x | ]
+	remove: [ index | ]
+	sorted: []
+	sorted: [ comparisonBlock | ]
+	sort!: []
+	sort!: [ comparisonBlock | ]
+	sublist: [ start end | ]
+	find: [ x | ]
+	reverseFind: [ x | ]
+
+}

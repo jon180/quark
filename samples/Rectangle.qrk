@@ -1,0 +1,24 @@
+Shape: Interface new {
+
+    area
+
+}
+
+Rectangle: Shape implement {
+
+    final get width
+    final get height |
+
+    area: [ width * height ]
+
+    static new: [ side | Rectangle new width: side height: side ]
+
+}
+
+Square: Rectangle extend {
+
+    final get side
+    width: side
+    height: side |
+
+}

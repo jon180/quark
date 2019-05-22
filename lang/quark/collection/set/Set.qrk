@@ -1,0 +1,11 @@
+Set: Collection extend {
+
+	add: [ x | ]
+	addAll: [ collection | ]
+	remove: [ x | ]
+	contains: [ x | ]
+	intersect: [ otherSet | ]
+	union: [ otherSet | ]
+	minus: [ otherSet | ]
+
+}

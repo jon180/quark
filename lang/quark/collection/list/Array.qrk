@@ -1,0 +1,43 @@
+Array: List implement {
+
+	data
+	capacity
+	get size
+
+	new: [ x |
+		x instanceOf Collection ? [
+			capacity: x size
+			data: "[] * capacity" execute
+			this addAll x
+		] elseIf (x instanceOf Integer) ? [
+			capacity: x
+			data: "[] * capacity" execute
+		] else [
+			ParameterError throw
+		]
+		size: 0
+	]
+
+	new: [ collection capacity |
+		this new capacity
+		this addAll collection
+	]
+
+	at: [ index | index >= capacity ? [ BoundsError throw ] else [ "data[index]" execute ] ]
+
+	at: [ index x |
+		index >= capacity ? [ BoundsError throw ]
+		"data[index] = x" execute
+		index >= size ? [ size ++ ]
+		this
+	]
+
+	remove: [ index |
+		x: this at index
+		index range to: (size - 1) do: [ i |
+			this at index: i x: (this at i ++)
+		]
+		x
+	]
+
+}

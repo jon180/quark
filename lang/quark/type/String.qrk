@@ -1,0 +1,26 @@
+String: Class new { value |
+
+	asString: [ this ]
+
+	asChar: [ size = 1 ? ifTrue: this charAt 0 else: FormatError throw ]
+
+	asCharArray: [ "array(value)" execute ]
+
+	size: [ this asCharArray size ]
+
+	empty?: [ this size = 0 ]
+
+	charAt: [ i | this asCharArray at i ]
+
+	forEach: [ x | this asCharArray forEach x ]
+
+	substring: [ from to | (this asCharArray subList from: from to: to) join ]
+
+	trim: [
+		from: 0; to: this size - 1
+		[(this charAt from) isWhitespace and (from < size - 1)] whileTrue [from ++]
+		[(this charAt to) isWhitespace and (to > 0)] whileTrue [to: to - 1]
+		this substring from: from to: to
+	]
+
+}

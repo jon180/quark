@@ -1,0 +1,9 @@
+Iterator: Interface new {
+
+	hasNext: []
+
+	next: []
+
+	remove: []
+
+}

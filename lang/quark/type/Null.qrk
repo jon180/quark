@@ -1,0 +1,15 @@
+Null: AbstractClass new {
+
+	static class: [ null ]
+
+	static isNull: [ true ]
+
+	static =: [ o | o isNull ]
+
+	static asString: [ "null" ]
+
+	static else: [ block | block execute ]
+
+	static elseIf: [ condition | condition ]
+
+}
